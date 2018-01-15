@@ -1,0 +1,133 @@
+\documentclass[a4paper, 12pt]{book}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{url}
+\usepackage[french]{algorithm}
+\usepackage{style/myalgorithm}
+\usepackage{amsmath,amsfonts,amssymb}
+\newcommand{\fBm}{\emph{fBm}~}
+\newcommand{\etal}{\emph{et al.}~}
+\newcommand{\glAd}{\emph{GL4D}~}
+\newcommand{\apiopengl}{API OpenGL\textsuperscript{\textregistered}~}
+\newcommand{\opengl}{OpenGL\textsuperscript{\textregistered}~}
+\newcommand{\opengles}{OpenGL\textsuperscript{\textregistered}ES~}
+\newcommand{\clang}{langage \texttt{C}}
+\newcommand{\codesource}{\textsc{Code source}~}
+\floatstyle{ruled}
+\newfloat{programslist}{htbp}{locs}
+\newcommand{\listofprograms}{\listof{programslist}{Liste des codes source}}
+\newcounter{program}[subsection]
+\renewcommand{\theprogram}{\arabic{chapter}.\arabic{program}}
+
+\newenvironment{program}[1]{
+  \if\relax\detokenize{#1}\relax
+  \gdef\mycaption{\relax}
+  \else
+  \gdef\mycaption{#1}
+  \fi
+  \refstepcounter{program}
+  \addcontentsline{locs}{section}{#1}
+  \footnotesize
+}{
+  \begin{description}
+    \item[\codesource \theprogram]--~\mycaption
+  \end{description}
+}
+
+\begin{document}
+\begin{titlepage}
+  \begin{center}
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \includegraphics[height=1.5cm]{images/m1info.png}
+    \end{tabular*}
+    \small 
+    \rule{\textwidth}{.5pt}~\\
+    \large 
+    \textsc{Université Paris 8 - Vincennes à Saint-Denis}\vspace{0.5cm}\\
+    \textbf{Master Informatique 1}\vspace{3.0cm}\\
+    \Large
+    \textbf{Rapport de projet tuteuré}\vspace{1.5cm}\\
+    \large
+    \textbf{Jiangning \textsc{Lin}}\vspace{1.5cm}\\
+    \textbf{Morvan \textsc{Calmel}}\vspace{1.5cm}\\
+    Date de soutenance : le 19/01/2018\vspace{1.75cm}\\
+  \end{center}\vspace{1.5cm}~\\
+\end{titlepage}
+\frontmatter
+%% Table des matières
+\tableofcontents
+\mainmatter
+\chapter*{Introduction}
+\markboth{\sc Introduction}{}
+\addcontentsline{toc}{chapter}{Introduction}
+Nous allons vous présenter la carte pédagogique avec son microcontrolleur PIC18F45K22, le capteur à ultrason et le capteur de température DS1820.
+\chapter{Le PIC18F45K22}
+La famille des PIC18F45K22 offre les avantages de tous les microcontrolleurs  PIC18 – nommé, haute puissance de calcul à un coût économique – avec l’ajout d’une haute endurance, et d’une mémoire de programme Flash. Au delà de ces amélioration, la famille des PIC18(L)F2X/4XK22 introduit une conception qui rend ces microcontrolleurs un choix logique pour beaucoup d’applications temps réel.\\
+
+\section{Nouvelles améliorations du coeur}
+\subsection{XLP TECHNOLOGY}
+Tous les appareils dans la famille des PIC18(L)F2X/4XK22 incorporent un champ d’améliorations qui peuvent signicativement réduire la consommation d’électricité durant l’exécution. 
+Les éléments-clé incluent :
+\begin{itemize}
+\item \texttt{Un lancement des modes alternatifs}~:
+En faisant tourner le controleur à partir de la source du Timer1 ou du bloc interne de l’oscillateur, la consommation de courant durant une exécution peut être réduit par plus de 90%.
+\item \texttt{De multiples modes de pause}~:
+Le contrôleur peut aussi tourner avec son coeur de CPU désactivé mais avec les périphériques toujours en activité. Dans ces états, la consommation de courant peut être réduite même plus, du plus petit tel que 4% des prérequis d’une opération habituelle.
+\item \texttt{Mode de switch à la volée}~:
+Les modes de consommation sont contrôlés par l’utilisateur durant une opération, autorisant l’utilisateur d’incorporer des idées d’économie d’énergie dans la conception des applications.
+\item \texttt{Basse consommation avec les modules clés}~:
+Les pré-requis de puissance pour le Timer1 et le Watchdog Timer sont minimisés. Il faut aller voir la section 27.0 “Spécifications électriques pour les valeurs.\\
+\end{itemize}
+
+\texttt{Autres améliorations}~:
+\begin{itemize}
+\item \texttt{Endurance de la mémoire}~:
+Les celllules Flash pour la mémoire du programme et pour les données de l’EEPROM sont évalués pour durer pour beaucoup de cycles d’effacement et d’écriture jusqu’à 10K pour la mémoire du programme et jusqu’à 100K pour l’EEPROM. La conservation des données sans rafraichissement est prudement estimé pour être pérenne jusqu’à 40 ans.
+\item \texttt{Autoprogrammation}~:
+Ces appareils peuvent écrire à leur propre mémoire de programme des espaces sous l’intérieur du contrôle du logiciel. En utilisant une routine bootloader localement dans le Boot Block protégé en haut de la mémoire du programme, cela deviens possible de créer une application qui peut se mettreà jour soi-même dans son champ.
+Ensemble d’instructions étendues:
+La famille des PIC18(L)F2X/4XK22 introduit une extension optionelle à l’ensemble des instructions du PIC18, qui ajoute huit nouvelles instructions et un mode d’adressage indexé.
+Cette extension, permet en tant qu’option de configuration d’appareil enabled, d’être specifiquement conçu pour optimiser du code logiciel re-entrant originellement développé dans des languages haut niveaux, tel que le C.
+\item \texttt{Module CCP amélioré}~:
+Dans le mode PWM, ce module fournit un, 2 ou 4 sorties modulées pour contrôler controlling le half-bridge et les pilotes full-bridge. Une autre amélioration inclut:
+- L’Auto-Shutdown, pour enlever les sorties PWM sur une interruption ou sur une autre condition de sélection
+- L’auto-Restart, pour réactiver les sorties une fois la condition nettoyée
+- La sortie pilotée pour sélectivement permettre une ou plus de 4 sorties pour fournir le signal PWM.
+EUSART adressable amélioré :
+Ce module de communication en série est capable de l’opération du standard RS-232 et fournit un support pour le protocole du bus LIN. D’autres améliorations inclut la détection automatique en baud rate et un 16-bit Baud.
+Le générateur de taux pour un résolution amélioré. Quand le microcontroleur utilise le bloc de l’oscillateur interne, l’EUSART fournit des opérations stables pour des applications qui parle à l’exctérieur sans utiliser
+un crystal externe (ou c’est un prérequis de puissance accompagnement).
+\item \texttt{Le convertisseur 10-bit A/D}~:
+Ce module incorpore un temps d’acquisition programmable, permettant pour une chaîne d’être sélectionner et une convertion d’être initialiser sans attendre pour une simple periode et donc, réduit le code hau niveau.
+\item \texttt{Timer Watchdog étendu (WDT)}~:
+Cette version améliorée incorpore un postscaler 16-bit, permettant un champ étendu de pause qui est stable à travers le voltage d’opération et la température. Voir la section 27.0 “Spécifications électrique” pour des periods de pause.
+\item Unité de mesure de temps en charge (CTMU)
+\item Sortie SR Latch\\
+\end{itemize}
+
+\chapter{SRF05 - Module E/R Ultrason}
+Le SRF05 est une évolution du SRF04. En soi, le SRF05 est entièrement compatible avec le SRF04. La gamme passe de 3 mètres jusqu’à 4 mètres. Un nouveau mode d’opération permet au SRF05 d’utiliser un seul fil pour le déclenchement et l’écho économisant une e/s sur le micro-contrôleur. Quand l’entrée de mode est laissée en l’air. Le SRF05 fonctionne avec E/S séparées de déclenchement et d’écho, comme le SRF04. Le SRF05 inclut un petit retard avant l’impulsion écho pour permettre le fonctionnement avec des micro-contrôleur plus lents.\\
+\begin{itemize}
+\item \texttt{Mode 1 : Trigger et écho séparés}~:
+Ce mode utilise des broches trigger et écho séparés, et c’est le mode le plus simple à utiliser. Tous les exemples de code pour le SRF04 vont fonctionner pour le SRF05 dans ce mode. Pour utiliser ce mode, laisser la broche du mode déconnecté. Le SRF05 a un resistor pull up interne sur cette broche.\\
+
+\item \texttt{Calcul de la distance}~:
+Les diagrammes de synchronisation SRF05 sont montrés ci-dessus pour chaque mode. Vous devez seulement fournir une impulsion de 10 micro-secondes courte à l’entrée de déclenchement. Le SRF05 enverra un éclat de 8 cycles d’ultrason à 40khz et place sa ligne d’écho au niveau 1. Dès qu’il détectera un écho il abaisse la ligne d’écho au niveau 0. La ligne d’écho est donc une impulsion dont la largeur est proportionnelle à la distance de l’objet. Si rien n’est détecter le SRF05 abaissera sa ligne d’écho après environ 30 milli-secondes. Le SRF04 fournit une impulsion d’écho proportionnelle à la distance. Si la largeur de l’impulsion est mesurée en micro-secondes alors une division par 58 donnera la distance en centimètres.\\\\
+
+Le SRF05 peut être déclenché aussi rapidement que chaque 50 milli-secondes, ou 20 fois chaque, Vous devrez attendre au moins 50 milli-secondes avant le prochain déclenchement, même si le SRF05 détecte un objet étroit et l’impulsion d’écho est plus courte. C’est de s’assurer que le “signal sonore” ultrasonique précédent est terminé et ne causera pas un faux écho sur la prochaine détection.
+\end{itemize}
+
+\cite{redbook}
+
+\chapter{Conclusion et Perspectives\label{chap-conclusion}}
+Nous avons pu tester la carte pédagogique à travers de multiples fonctionnalités, tel que l'afficheur 7 segments, le capteur de température, le DS1820, le Piezo buffer, qui est un générateur de sons. 
+Ce projet nous a permis de nous familiariser avec les systèmes embarqués.
+
+\bibliographystyle{alpha}
+\bibliography{memoire}
+\end{document}
