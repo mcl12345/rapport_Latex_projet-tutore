@@ -53,8 +53,8 @@
     \Large
     \textbf{Rapport de projet tuteuré}\vspace{1.5cm}\\
     \large
-    \textbf{Jiangning \textsc{Lin}}\vspace{1.5cm}\\
-    \textbf{Morvan \textsc{Calmel}}\vspace{1.5cm}\\
+    \textbf{Jiangning \textsc{Lin}}\\
+    \textbf{Morvan \textsc{Calmel}} 12314763\vspace{1.5cm}\\
     Date de soutenance : le 19/01/2018\vspace{1.75cm}\\
   \end{center}\vspace{1.5cm}~\\
 \end{titlepage}
@@ -65,7 +65,7 @@
 \chapter*{Introduction}
 \markboth{\sc Introduction}{}
 \addcontentsline{toc}{chapter}{Introduction}
-Nous allons vous présenter la carte pédagogique avec son microcontrolleur PIC18F45K22, le capteur à ultrason et le capteur de température DS1820.
+Nous allons vous présenter la carte pédagogique avec son microcontrolleur PIC18F45K22, le capteur à ultrason pour la détection d'objet aux alentours et le capteur de température DS1820.
 \chapter{Le PIC18F45K22}
 La famille des PIC18F45K22 offre les avantages de tous les microcontrolleurs  PIC18 – nommé, haute puissance de calcul à un coût économique – avec l’ajout d’une haute endurance, et d’une mémoire de programme Flash. Au delà de ces amélioration, la famille des PIC18(L)F2X/4XK22 introduit une conception qui rend ces microcontrolleurs un choix logique pour beaucoup d’applications temps réel.\\
 
@@ -121,6 +121,11 @@ Les diagrammes de synchronisation SRF05 sont montrés ci-dessus pour chaque mode
 
 Le SRF05 peut être déclenché aussi rapidement que chaque 50 milli-secondes, ou 20 fois chaque, Vous devrez attendre au moins 50 milli-secondes avant le prochain déclenchement, même si le SRF05 détecte un objet étroit et l’impulsion d’écho est plus courte. C’est de s’assurer que le “signal sonore” ultrasonique précédent est terminé et ne causera pas un faux écho sur la prochaine détection.
 \end{itemize}
+
+\chapter{Le capteur de température, DS1820}
+C’est un capteur numérique de température qui utilise un câble sur son interface pour ses opérations. Il est capable de mesurer des températures allant de -55 à 128C, et il fournit une précision de plus ou moins 0.5C pour des températures allant de -10 à 85C. Cela requiert un courant de 3V à 5.5V pour ses opérations. Cela prend au maximum de 750ms pour le DS1820 de calculer la température avec une résolution de 9-bit.
+Un câble de communication série active les données pour être transféré sur un un seule câble de communication, pendant que le processus lui-même est sous le contrôle du microcontrolleur. L’avantage d’une telle communication est qu’une seule broche du microcontrolleur est utilisée. De multiple capteurs peuvent être sur le même câble. Tous les appareils esclave par défaut ont un code unique ID, qui active l’appareil maître pour facilement identifier tous les appareils partageant la même interface. L’EasyPIC-v7 fournit un socket séparé (TS1) pour le DS1820. Le câble de communication avec le microcontrolleur est connecté via le jumper J11.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 
 \cite{redbook}
 

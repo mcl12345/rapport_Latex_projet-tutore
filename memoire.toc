@@ -4,4 +4,5 @@
 \contentsline {section}{\numberline {1.1}Nouvelles am\IeC {\'e}liorations du coeur}{3}
 \contentsline {subsection}{\numberline {1.1.1}XLP TECHNOLOGY}{3}
 \contentsline {chapter}{\numberline {2}SRF05 - Module E/R Ultrason}{7}
-\contentsline {chapter}{\numberline {3}Conclusion et Perspectives}{9}
+\contentsline {chapter}{\numberline {3}Le capteur de temp\IeC {\'e}rature, DS1820}{9}
+\contentsline {chapter}{\numberline {4}Conclusion et Perspectives}{11}
