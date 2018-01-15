@@ -62,12 +62,15 @@
 %% Table des matières
 \tableofcontents
 \mainmatter
-\chapter*{Introduction}
+
+\chapter{Remerciements}
+
+\chapter{Introduction}
 \markboth{\sc Introduction}{}
 \addcontentsline{toc}{chapter}{Introduction}
-Nous allons vous présenter la carte pédagogique avec son microcontrolleur PIC18F45K22, le capteur à ultrason pour la détection d'objet aux alentours et le capteur de température DS1820.
+Nous allons vous présenter la carte pédagogique avec son microcontrôleur PIC18F45K22, le capteur à ultrason pour la détection d'objet aux alentours et le capteur de température DS1820.
 \chapter{Le PIC18F45K22}
-La famille des PIC18F45K22 offre les avantages de tous les microcontrolleurs  PIC18 – nommé, haute puissance de calcul à un coût économique – avec l’ajout d’une haute endurance, et d’une mémoire de programme Flash. Au delà de ces amélioration, la famille des PIC18(L)F2X/4XK22 introduit une conception qui rend ces microcontrolleurs un choix logique pour beaucoup d’applications temps réel.\\
+La famille des PIC18F45K22 offre les avantages de tous les microcontrôleurs  PIC18 – nommé, haute puissance de calcul à un coût économique – avec l’ajout d’une haute endurance, et d’une mémoire de programme Flash. Au delà de ces amélioration, la famille des PIC18(L)F2X/4XK22 introduit une conception qui rend ces microcontrôleurs un choix logique pour beaucoup d’applications temps réel.\\
 
 \section{Nouvelles améliorations du coeur}
 \subsection{XLP TECHNOLOGY}
@@ -100,7 +103,7 @@ Dans le mode PWM, ce module fournit un, 2 ou 4 sorties modulées pour contrôler
 - La sortie pilotée pour sélectivement permettre une ou plus de 4 sorties pour fournir le signal PWM.
 EUSART adressable amélioré :
 Ce module de communication en série est capable de l’opération du standard RS-232 et fournit un support pour le protocole du bus LIN. D’autres améliorations inclut la détection automatique en baud rate et un 16-bit Baud.
-Le générateur de taux pour un résolution amélioré. Quand le microcontroleur utilise le bloc de l’oscillateur interne, l’EUSART fournit des opérations stables pour des applications qui parle à l’exctérieur sans utiliser
+Le générateur de taux pour un résolution amélioré. Quand le microcontrôleur utilise le bloc de l’oscillateur interne, l’EUSART fournit des opérations stables pour des applications qui parle à l’exctérieur sans utiliser
 un crystal externe (ou c’est un prérequis de puissance accompagnement).
 \item \texttt{Le convertisseur 10-bit A/D}~:
 Ce module incorpore un temps d’acquisition programmable, permettant pour une chaîne d’être sélectionner et une convertion d’être initialiser sans attendre pour une simple periode et donc, réduit le code hau niveau.
@@ -111,7 +114,7 @@ Cette version améliorée incorpore un postscaler 16-bit, permettant un champ é
 \end{itemize}
 
 \chapter{SRF05 - Module E/R Ultrason}
-Le SRF05 est une évolution du SRF04. En soi, le SRF05 est entièrement compatible avec le SRF04. La gamme passe de 3 mètres jusqu’à 4 mètres. Un nouveau mode d’opération permet au SRF05 d’utiliser un seul fil pour le déclenchement et l’écho économisant une e/s sur le micro-contrôleur. Quand l’entrée de mode est laissée en l’air. Le SRF05 fonctionne avec E/S séparées de déclenchement et d’écho, comme le SRF04. Le SRF05 inclut un petit retard avant l’impulsion écho pour permettre le fonctionnement avec des micro-contrôleur plus lents.\\
+Le SRF05 est une évolution du SRF04. En soi, le SRF05 est entièrement compatible avec le SRF04. La gamme passe de 3 mètres jusqu’à 4 mètres. Un nouveau mode d’opération permet au SRF05 d’utiliser un seul fil pour le déclenchement et l’écho économisant une e/s sur le microcontrôleur. Quand l’entrée de mode est laissée en l’air. Le SRF05 fonctionne avec E/S séparées de déclenchement et d’écho, comme le SRF04. Le SRF05 inclut un petit retard avant l’impulsion écho pour permettre le fonctionnement avec des microcontrôleurs plus lents.\\
 \begin{itemize}
 \item \texttt{Mode 1 : Trigger et écho séparés}~:
 Ce mode utilise des broches trigger et écho séparés, et c’est le mode le plus simple à utiliser. Tous les exemples de code pour le SRF04 vont fonctionner pour le SRF05 dans ce mode. Pour utiliser ce mode, laisser la broche du mode déconnecté. Le SRF05 a un resistor pull up interne sur cette broche.\\
@@ -124,7 +127,7 @@ Le SRF05 peut être déclenché aussi rapidement que chaque 50 milli-secondes, o
 
 \chapter{Le capteur de température, DS1820}
 C’est un capteur numérique de température qui utilise un câble sur son interface pour ses opérations. Il est capable de mesurer des températures allant de -55 à 128C, et il fournit une précision de plus ou moins 0.5C pour des températures allant de -10 à 85C. Cela requiert un courant de 3V à 5.5V pour ses opérations. Cela prend au maximum de 750ms pour le DS1820 de calculer la température avec une résolution de 9-bit.
-Un câble de communication série active les données pour être transféré sur un un seule câble de communication, pendant que le processus lui-même est sous le contrôle du microcontrolleur. L’avantage d’une telle communication est qu’une seule broche du microcontrolleur est utilisée. De multiple capteurs peuvent être sur le même câble. Tous les appareils esclave par défaut ont un code unique ID, qui active l’appareil maître pour facilement identifier tous les appareils partageant la même interface. L’EasyPIC-v7 fournit un socket séparé (TS1) pour le DS1820. Le câble de communication avec le microcontrolleur est connecté via le jumper J11.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Un câble de communication série active les données pour être transféré sur un seul câble de communication, pendant que le processus lui-même est sous le contrôle du microcontrôleur. L’avantage d’une telle communication est qu’une seule broche du microcontrôleur est utilisée. De multiple capteurs peuvent être sur le même câble. Tous les appareils esclave par défaut ont un code unique ID, qui active l’appareil maître pour facilement identifier tous les appareils partageant la même interface. L’EasyPIC-v7 fournit un socket séparé (TS1) pour le DS1820. Le câble de communication avec le microcontrôleur est connecté via le jumper J11.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
 \cite{redbook}
@@ -132,6 +135,12 @@ Un câble de communication série active les données pour être transféré sur
 \chapter{Conclusion et Perspectives\label{chap-conclusion}}
 Nous avons pu tester la carte pédagogique à travers de multiples fonctionnalités, tel que l'afficheur 7 segments, le capteur de température, le DS1820, le Piezo buffer, qui est un générateur de sons. 
 Ce projet nous a permis de nous familiariser avec les systèmes embarqués.
+
+\chapter{Bibliographie}
+\begin{itemize}
+\item 28/40/44-Pin, Low-Power, High-Performance Microcontrollers with XLP Technology, PIC18F45K22 datasheet
+\item EasyPIC-v7 official documentation, EasyPIC-v7 datasheet
+\end{itemize}
 
 \bibliographystyle{alpha}
 \bibliography{memoire}
