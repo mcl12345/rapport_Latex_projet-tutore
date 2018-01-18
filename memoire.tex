@@ -67,7 +67,7 @@
 \tableofcontents
 \mainmatter
 
-\chapter{Remerciements}
+\chapter*{Remerciements}
 Nous tenons à remercier Mme Anna Pappa, responsable de Master I Informatique, et l’Université Paris VIII pour nous avoir donné la chance de faire ce projet tutoré au sein de l’Université Paris 8 en Master I Informatique dans le premier semestre.\\
 
 Nous voudrions remercier Mme Lynda Seddiki, notre tuteur du projet tutoré. Elle nous a prodigué de nombreux conseils et avis techniques au cours du projet. Elle nous a offert la possibilité d’avoir une version sur la fonction du projet tutoré et sur la gestion de projet en général. Elle a su nous mettre en confiance et nous motiver à la période du premier semestre.\\
@@ -75,8 +75,11 @@ Nous voudrions remercier Mme Lynda Seddiki, notre tuteur du projet tutoré. Elle
 Nous souhaitons remercier Mr Farès Belhadj, notre professeur de Master Informatique. Il nous a donné l’outil TXC pour faire ce rapport de projet.
 
 
-\chapter{Introduction}
-Nous allons vous présenter la carte pédagogique avec son microcontrôleur PIC18F45K22, le capteur à ultrason pour la détection d'objet aux alentours et le capteur de température DS1820.
+\chapter*{Introduction}
+Nous allons vous présenter la carte pédagogique avec son microcontrôleur PIC18F45K22, le capteur à ultrason pour la détection d'objet aux alentours et le capteur de température DS1820.\\
+
+Ce projet utilise le comprilateur MikroC Pro for PIC v.6.6.1 et l'application MikroProg Suite qui fonctionne avec Windows7 en langage C. \\
+
 \chapter{Le PIC18F45K22}
 La famille des PIC18F45K22 offre les avantages de tous les microcontrôleurs  PIC18 – nommé, haute puissance de calcul à un coût économique – avec l’ajout d’une haute endurance, et d’une mémoire de programme Flash. Au delà de ces amélioration, la famille des PIC18(L)F2X/4XK22 introduit une conception qui rend ces microcontrôleurs un choix logique pour beaucoup d’applications temps réel.\\
 
@@ -131,6 +134,64 @@ Les diagrammes de synchronisation SRF05 sont montrés ci-dessus pour chaque mode
 
 Le SRF05 peut être déclenché aussi rapidement que chaque 50 milli-secondes, ou 20 fois chaque, Vous devrez attendre au moins 50 milli-secondes avant le prochain déclenchement, même si le SRF05 détecte un objet étroit et l’impulsion d’écho est plus courte. C’est de s’assurer que le “signal sonore” ultrasonique précédent est terminé et ne causera pas un faux écho sur la prochaine détection.
 \end{itemize}
+
+\chapter{MikroC PRO for PIC v.6.6.1}
+\textbf {Le langage mikroC pour PIC} a trouvé une large application pour le développement de systèmes la base de microcontrôleur. Il assure une combinaison de l'environnement de programmation avancée IDE (Integrated Development Environment), et d’un vaste ensemble de bibliothèques le matériel, de la documentation complète et d’un grand nombre des exemples.\\
+
+\textbf {Le compilateur mikroC pour PIC} bénéficie d'une prise en main très intuitive et d'une ergonomie sans faille. Ses très nombreux outils intégrés (mode simulateur, terminal de communication Ethernet, terminal de communication USB, gestionnaire pour afficheurs 7 segments, analyseur sta-tistique, correcteur d'erreur, explorateur de code, mode Débug ICD...) associé à sa capacité à pou-voir gérer la plupart des périphériques rencontrés dans l'industrie (Bus I2C™, 1Wire™, 
+SPI™, RS485, Bus CAN™, USB, gestion de cartes compact Flash et SD™/MMC™, génération de signaux PWM, afficheurs LCD alphanumériques et graphiques, afficheurs LEDs à 7 segments, etc...) en font un outil de développement incontournable pour les systèmes embarqués, sans aucun compromis entre la performance et la facilité de débogage.\\
+
+\section{Compilateur mikroC PRO pour PIC}
+La nouvelle version appelée \textbf{mikroC PRO} dispose de très nombreuses améliorations du compilateur \textbf{mikroC}~: nouvelles variables utilisables, nouvelle interface IDE, amélioration des performances du linker et de l’optimisateur, cycle de compilation plus rapide, code machine généré plus compact, nouveaux PIC supportés, environnement de développement encore plus ergonomique, nouveaux exemples d’applications, etc…
+Dans la suite nous utiliserons le compilateur mikroC PRO v.6.6.1.
+La suite des applications de programmation nous réalisons à l’aide du logiciel \textbf{mikroProg Suite}.\\
+
+\subsection{Installation du compilateur mikroC PRO v.6.6.1}
+Cliquer sur l'icône \textbf{mikroC PRO 6.6.1.exe}(Si la fenêtre du Contrôle du compte d’utilisateur s’ouvre, clique sur oui), et attendre que les données de l’installation se décompressent.\\
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth]{images/mikroc_pro_pic_box.png}
+  \caption{MikroC PRO BOX}
+\end{figure}
+
+\subsection{IDE mikroC PRO}
+Lancer le compilateur mikroC PRO en cliquant sur l’icône. C’est sur la figure 3.2 que vous obtenez lorsque vous démarrez l’IDE mikroC PRO.\\
+
+\textbf{Editeur de code} (voire la figure 3.2~: Code Editeur)
+L’éditeur de code est le même que toute éditeur de texte standard pour l’environnement de 
+Windows, y compris Copie, Coller, Annuler les actions etc… Il possède en plus des ressources comme suit~: 
+\begin{description}
+\item \texttt{- Coloration syntaxique réglable}
+\item \texttt{- Assistant de code}
+\item \texttt{- Assistant de paramètre}
+\item \texttt{- Mise en forme automatique}
+\end{description}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.0\linewidth]{images/mikroC_PRO_for_PIC.png}
+  \caption{L'environnement IDE du compilateur mikroC PRO\label{fig-bmp}}
+\end{figure}
+
+\section{MikroProg Suite for PIC}
+Cliquer le bouton \textbf{Programe} pour compiler la programme, on va sauter un cadre de MikroProg Suite for PIC(voire la figure 3.3). C’est une application est destiné à la programmation PIC, l'interface graphique de ce programme est claire et facile à utiliser, ce qui rend l’utilisation de ce programme plus rapide. La fenêtre principale du programme inclut des options de base pour la programmation de microcontrôleurs.\\
+
+La barre de progression affiche la programmation le progrès.(voire la figure3.4 (a))
+Lorsque le téléchargement est terminé, votre MCU est programmée et prête à l’emploi.(voire la figure3.4 (b))\\
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth]{images/mikroProg_Suite.png}
+  \caption{mikroProg Suite for PIC\label{fig-bmp}}
+\end{figure} 
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tabular}{cc}
+    \includegraphics[height=0.4\textheight]{images/progress_bar.png}&
+    \includegraphics[height=0.4\textheight]{images/finish_upload.png}\\
+    (a)&(b)
+  \end{tabular}
+  \caption{Figure composée de deux images~: (a) Progress bar ; (b) finish upload.\label{fig-tab}}
+\end{figure}
 
 \chapter{Le capteur de température, DS1820}
 C’est un capteur numérique de température qui utilise un câble sur son interface pour ses opérations. Il est capable de mesurer des températures allant de -55 à 128C, et il fournit une précision de plus ou moins 0.5C pour des températures allant de -10 à 85C. Cela requiert un courant de 3V à 5.5V pour ses opérations. Cela prend au maximum de 750ms pour le DS1820 de calculer la température avec une résolution de 9-bit.

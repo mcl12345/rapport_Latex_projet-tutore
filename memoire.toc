@@ -3,7 +3,12 @@
 \contentsline {section}{\numberline {1.1}Nouvelles am\IeC {\'e}liorations du coeur}{5}
 \contentsline {subsection}{\numberline {1.1.1}XLP TECHNOLOGY}{5}
 \contentsline {chapter}{\numberline {2}SRF05 - Module E/R Ultrason}{9}
-\contentsline {chapter}{\numberline {3}Le capteur de temp\IeC {\'e}rature, DS1820}{11}
-\contentsline {chapter}{\numberline {4}Premi\IeC {\`e}re approche}{13}
-\contentsline {chapter}{\numberline {5}Conclusion et Perspectives}{15}
-\contentsline {chapter}{\numberline {6}Bibliographie}{17}
+\contentsline {chapter}{\numberline {3}MikroC PRO for PIC v.6.6.1}{11}
+\contentsline {section}{\numberline {3.1}Compilateur mikroC PRO pour PIC}{11}
+\contentsline {subsection}{\numberline {3.1.1}Installation du compilateur mikroC PRO v.6.6.1}{12}
+\contentsline {subsection}{\numberline {3.1.2}IDE mikroC PRO}{12}
+\contentsline {section}{\numberline {3.2}MikroProg Suite for PIC}{13}
+\contentsline {chapter}{\numberline {4}Le capteur de temp\IeC {\'e}rature, DS1820}{15}
+\contentsline {chapter}{\numberline {5}Premi\IeC {\`e}re approche}{17}
+\contentsline {chapter}{\numberline {6}Conclusion et Perspectives}{19}
+\contentsline {chapter}{\numberline {7}Bibliographie}{21}
