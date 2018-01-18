@@ -78,8 +78,14 @@ Nous souhaitons remercier Mr Farès Belhadj, notre professeur de Master Informat
 
 \chapter{Introduction}
 Nous allons vous présenter la carte pédagogique avec son microcontrôleur PIC18F45K22, le capteur à ultrason pour la détection d'objet aux alentours et le capteur de température DS1820.\\
-
 Ce projet utilise le comprilateur MikroC Pro for PIC v.6.6.1 et l'application MikroProg Suite qui fonctionne avec Windows7 en langage C. \\
+
+\chapter{Première approche}
+Nous allons développer un programme qui permettra à terme de lire sur un téléphone Android la température depuis le capteur de température, et via une connexion Bluetooth, 
+ou de lire sur le téléphone la distance qui sépare le microcontrôleur d'un autre objet, via le capteur à ultrason, et via une connexion Bluetooth.\\
+
+\chapter{EasyPIC-v7}
+\includegraphics[width=1.0\linewidth]{images/easyPIC-v7.jpg}
 
 \chapter{Le PIC18F45K22}
 La famille des PIC18F45K22 offre les avantages de tous les microcontrôleurs  PIC18 – nommé, haute puissance de calcul à un coût économique – avec l’ajout d’une haute endurance, et d’une mémoire de programme Flash. Au delà de ces amélioration, la famille des PIC18(L)F2X/4XK22 introduit une conception qui rend ces microcontrôleurs un choix logique pour beaucoup d’applications temps réel.\\
@@ -129,12 +135,15 @@ Le SRF05 est une évolution du SRF04. En soi, le SRF05 est entièrement compatib
 \begin{itemize}
 \item \texttt{Mode 1 : Trigger et écho séparés}~:
 Ce mode utilise des broches trigger et écho séparés, et c’est le mode le plus simple à utiliser. Tous les exemples de code pour le SRF04 vont fonctionner pour le SRF05 dans ce mode. Pour utiliser ce mode, laisser la broche du mode déconnecté. Le SRF05 a un resistor pull up interne sur cette broche.\\
-
 \item \texttt{Calcul de la distance}~:
 Les diagrammes de synchronisation SRF05 sont montrés ci-dessus pour chaque mode. Vous devez seulement fournir une impulsion de 10 micro-secondes courte à l’entrée de déclenchement. Le SRF05 enverra un éclat de 8 cycles d’ultrason à 40khz et place sa ligne d’écho au niveau 1. Dès qu’il détectera un écho il abaisse la ligne d’écho au niveau 0. La ligne d’écho est donc une impulsion dont la largeur est proportionnelle à la distance de l’objet. Si rien n’est détecter le SRF05 abaissera sa ligne d’écho après environ 30 milli-secondes. Le SRF04 fournit une impulsion d’écho proportionnelle à la distance. Si la largeur de l’impulsion est mesurée en micro-secondes alors une division par 58 donnera la distance en centimètres.\\\\
-
 Le SRF05 peut être déclenché aussi rapidement que chaque 50 milli-secondes, ou 20 fois chaque, Vous devrez attendre au moins 50 milli-secondes avant le prochain déclenchement, même si le SRF05 détecte un objet étroit et l’impulsion d’écho est plus courte. C’est de s’assurer que le “signal sonore” ultrasonique précédent est terminé et ne causera pas un faux écho sur la prochaine détection.
 \end{itemize}
+
+\chapter{Le capteur de température, DS1820}
+C’est un capteur numérique de température qui utilise un câble sur son interface pour ses opérations. Il est capable de mesurer des températures allant de -55 à 128C, et il fournit une précision de plus ou moins 0.5C pour des températures allant de -10 à 85C. Cela requiert un courant de 3V à 5.5V pour ses opérations. Cela prend au maximum de 750ms pour le DS1820 de calculer la température avec une résolution de 9-bit.\\
+Un câble de communication série active les données pour être transféré sur un seul câble de communication, pendant que le processus lui-même est sous le contrôle du microcontrôleur. L’avantage d’une telle communication est qu’une seule broche du microcontrôleur est utilisée. De multiple capteurs peuvent être sur le même câble.\\
+Tous les appareils esclave par défaut ont un code unique ID, qui active l’appareil maître pour facilement identifier tous les appareils partageant la même interface. L’EasyPIC-v7 fournit un socket séparé (TS1) pour le DS1820. Le câble de communication avec le microcontrôleur est connecté via le jumper J11.
 
 \chapter{MikroC PRO for PIC v.6.6.1}
 \textbf {Le langage mikroC pour PIC} a trouvé une large application pour le développement de systèmes la base de microcontrôleur. Il assure une combinaison de l'environnement de programmation avancée IDE (Integrated Development Environment), et d’un vaste ensemble de bibliothèques le matériel, de la documentation complète et d’un grand nombre des exemples.\\
@@ -194,15 +203,10 @@ Lorsque le téléchargement est terminé, votre MCU est programmée et prête à
   \caption{Figure composée de deux images~: (a) Progress bar ; (b) finish upload.\label{fig-tab}}
 \end{figure}
 
-\chapter{Le capteur de température, DS1820}
-C’est un capteur numérique de température qui utilise un câble sur son interface pour ses opérations. Il est capable de mesurer des températures allant de -55 à 128C, et il fournit une précision de plus ou moins 0.5C pour des températures allant de -10 à 85C. Cela requiert un courant de 3V à 5.5V pour ses opérations. Cela prend au maximum de 750ms pour le DS1820 de calculer la température avec une résolution de 9-bit.\\
-Un câble de communication série active les données pour être transféré sur un seul câble de communication, pendant que le processus lui-même est sous le contrôle du microcontrôleur. L’avantage d’une telle communication est qu’une seule broche du microcontrôleur est utilisée. De multiple capteurs peuvent être sur le même câble.\\
-Tous les appareils esclave par défaut ont un code unique ID, qui active l’appareil maître pour facilement identifier tous les appareils partageant la même interface. L’EasyPIC-v7 fournit un socket séparé (TS1) pour le DS1820. Le câble de communication avec le microcontrôleur est connecté via le jumper J11.
 
 
-\chapter{Première approche}
-Nous allons développer un programme qui permettra à terme de lire sur un téléphone Android la température depuis le capteur de température, et via une connexion Bluetooth, 
-ou de lire sur le téléphone la distance qui sépare le microcontrôleur d'un autre objet, via le capteur à ultrason, et via une connexion Bluetooth.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
 
 \cite{redbook}
 
